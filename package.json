@@ -1,0 +1,80 @@
+{
+  "name": "not-one-time-code",
+  "version": "0.0.1",
+  "description": "manager of one time codes with valit till date and payload",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --reporter spec ./test/**.js",
+    "pretest": "./node_modules/.bin/eslint ./src/**/**.js",
+    "lint": "./node_modules/.bin/eslint ./src/**/**.js --fix",
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json",
+    "cover": "nyc npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/interrupter/not-one-time-code.git"
+  },
+  "keywords": [
+    "not",
+    "one",
+    "time",
+    "code"
+  ],
+  "author": "interrupter <alex.repin@mail.ru> (http://github.com/interrupter)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/interrupter/not-one-time-code/issues"
+  },
+  "homepage": "https://github.com/interrupter/not-one-time-code#readme",
+  "dependencies": {
+    "mongoose": "*",
+    "uuidv4": "*"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "chai-as-promised": "*",
+    "eslint": "*",
+    "ink-docstrap": "*",
+    "jsdoc": "*",
+    "mocha": "*",
+    "mongodb-memory-server": "^5.0.3",
+    "nyc": "^13.3.0",
+    "should": "^13.2.1"
+  },
+  "nyc": {
+    "include": [
+      "index.js",
+      "src/**/**/**.js"
+    ],
+    "exclude": [
+      "test/**/**/**/**.js"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 95,
+    "watermarks": {
+      "lines": [
+        80,
+        95
+      ],
+      "functions": [
+        80,
+        95
+      ],
+      "branches": [
+        80,
+        95
+      ],
+      "statements": [
+        80,
+        95
+      ]
+    }
+  }
+}

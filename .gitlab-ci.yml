@@ -1,0 +1,25 @@
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  variables:
+    NODE_ENV: development
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+    - npm run test
+
+build:
+  stage: build
+  variables:
+    NODE_ENV: development
+  script:
+    - npm run docs
+    - npm run cover
