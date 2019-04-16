@@ -1,0 +1,5 @@
+{
+	"one_time_code_ttl_not_valid": "TTL of one time code should be from {min} to {max} minutes!",
+	"one_time_code_not_valid": "One time code is not valid!",
+	"one_time_code_not_in_format": "Code format is not correct!"
+}

@@ -1,0 +1,5 @@
+{
+  "one_time_code_ttl_not_valid": "Время жизни одноразового кода должно быть от {min} до {max} минут!",
+	"one_time_code_not_valid": "Одноразовый пароль не действителен!",
+	"one_time_code_not_in_format": "Не верный формат кода!"
+}
