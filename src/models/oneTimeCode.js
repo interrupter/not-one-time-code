@@ -66,18 +66,20 @@ exports.thisStatics = {
 		}
 	},
 	findValid(code){
-		let now = new Date();
-		let OneTimeCode = this;
-		let searchQuery = OneTimeCode.findOne({code: code, active: true, validTill: {$gte: now}});
-		return searchQuery.exec();
+		if (this.isCode(code)){
+			let now = new Date();
+			let searchQuery = this.findOne({code: code, active: true, validTill: {$gte: now}});
+			return searchQuery.exec();
+		}else{
+			return Promise.reject(new notError(notLocale.say('one_time_code_not_in_format')));
+		}
 	},
 	redeemCode(code){
 		if (this.isCode(code)){
 			return this.findValid(code)
 				.then((result)=>{
 					if(result){
-						result.redeemed = new Date();
-						return result.invalidate();
+						return result.redeem();
 					}else{
 						throw new notError(notLocale.say('one_time_code_not_valid'));
 					}
@@ -111,5 +113,9 @@ exports.thisMethods = {
 	invalidate(){
 		this.active = false;
 		return this.save();
+	},
+	redeem(){
+		this.redeemed = new Date();
+		return this.invalidate();
 	}
 };

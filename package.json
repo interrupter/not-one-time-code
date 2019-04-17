@@ -1,6 +1,6 @@
 {
   "name": "not-one-time-code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "manager of one time codes with valit till date and payload",
   "main": "src/index.js",
   "scripts": {
