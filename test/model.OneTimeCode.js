@@ -163,11 +163,11 @@ describe('OneTimeCode', function () {
 				return OneTimeCode.OneTimeCode.findValid('asdiueriueqrg');
 			})
 			.then((result)=>{
-				expect(result).to.be.null;
-				done();
+				done(new Error('This should failed, but worked well!'));
 			})
 			.catch((err)=>{
-				done(err);
+				expect(err.message).to.be.equal(notLocale.say('one_time_code_not_in_format'));
+				done();
 			});
 	});
 
