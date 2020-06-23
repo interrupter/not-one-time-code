@@ -2,7 +2,7 @@ const
 	notError = require('not-error').notError,
 	Schema = require('mongoose').Schema,
 	notLocale = require('not-locale'),
-	uuidv4  =  require('uuidv4');
+	{ uuid, isUuid }  =  require('uuidv4');
 
 const DEFAULT_TTL = 3; //in minutes
 const DEFAULT_TTL_MIN = 1; //in minutes
@@ -56,7 +56,7 @@ exports.thisStatics = {
 			let now = new Date();
 			now.setMinutes(now.getMinutes() + ttl);
 			let code = new OneTimeCode({
-				code:       uuidv4(),
+				code:       uuid(),
 				validTill:  now,
 				payload
 			});
@@ -89,7 +89,7 @@ exports.thisStatics = {
 		}
 	},
 	isCode(str){
-		return ((typeof str === 'string') && (uuidv4.is(str)));
+		return ((typeof str === 'string') && (isUuid(str)));
 	}
 };
 
@@ -104,7 +104,7 @@ exports.thisMethods = {
 		if (typeof code === 'undefined' || code === null){
 			code = this.code;
 		}
-		if(typeof code === 'string' && uuidv4.is(code)){
+		if(typeof code === 'string' && isUuid(code)){
 			return (this.active && (code === this.code) && (now.getTime() < this.validTill.getTime()));
 		}else{
 			return false;
