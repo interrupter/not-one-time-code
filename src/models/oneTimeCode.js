@@ -68,7 +68,7 @@ exports.thisStatics = {
 	findValid(code){
 		if (this.isCode(code)){
 			let now = new Date();
-			let searchQuery = this.findOne({code: code, active: true, validTill: {$gte: now}});
+			let searchQuery = this.findOne({code: code, active: true, validTill: { $gte: now } });
 			return searchQuery.exec();
 		}else{
 			return Promise.reject(new notError(notLocale.say('one_time_code_not_in_format')));
