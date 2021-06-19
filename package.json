@@ -27,10 +27,7 @@
   },
   "homepage": "https://github.com/interrupter/not-one-time-code#readme",
   "dependencies": {
-    "mongoose": "*",
-    "not-error": "*",
-    "not-locale": "*",
-    "uuidv4": "^6.2.6"
+    "uuidv4": "^6.2.10"
   },
   "devDependencies": {
     "chai": "*",
@@ -39,8 +36,8 @@
     "ink-docstrap": "*",
     "jsdoc": "*",
     "mocha": "*",
-    "mongodb-memory-server": "^6.9.3",
-    "not-node": "^3.3.90",
+    "mongodb-memory-server": "^6.9.6",
+    "not-node": "^3.4.22",
     "nyc": "^15.1.0",
     "should": "^13.2.3"
   },
