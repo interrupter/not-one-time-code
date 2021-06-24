@@ -1,6 +1,6 @@
 {
   "name": "not-one-time-code",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "manager of one time codes with valit till date and payload",
   "main": "src/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/interrupter/not-one-time-code#readme",
   "dependencies": {
-    "uuidv4": "^6.2.10"
+    "uuid": "*"
   },
   "devDependencies": {
     "chai": "*",
@@ -37,7 +37,7 @@
     "jsdoc": "*",
     "mocha": "*",
     "mongodb-memory-server": "^6.9.6",
-    "not-node": "^3.4.22",
+    "not-node": "*",
     "nyc": "^15.1.0",
     "should": "^13.2.3"
   },
