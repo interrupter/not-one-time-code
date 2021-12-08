@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/interrupter/not-one-time-code#readme",
   "dependencies": {
-    "uuid": "*"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "chai": "*",
@@ -36,7 +36,7 @@
     "ink-docstrap": "*",
     "jsdoc": "*",
     "mocha": "*",
-    "mongodb-memory-server": "^6.9.6",
+    "mongodb-memory-server": "^8.0.4",
     "not-node": "*",
     "nyc": "^15.1.0",
     "should": "^13.2.3"

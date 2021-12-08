@@ -6,7 +6,7 @@ const
 	path = require('path'),
 	notLocale = require('not-locale'),
 	Proto = require('not-node').Proto,
-	{ uuid, isUuid }  =  require('uuidv4'),
+	{ v4, validate }  =  require('uuid'),
 	OneTimeCode = require('../src/models/oneTimeCode.js'),
 	mongoose = require('mongoose'),
 	MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer,
@@ -49,7 +49,7 @@ describe('OneTimeCode', function () {
 				expect(result.validTill).to.be.a('date');
 				expect(result.created).to.be.a('date');
 				expect(result.redeemed).to.be.an('undefined');
-				expect(isUuid(result.code)).to.be.true;
+				expect(validate(result.code)).to.be.true;
 				done();
 			})
 			.catch((err)=>{
@@ -64,7 +64,7 @@ describe('OneTimeCode', function () {
 				expect(result.validTill).to.be.a('date');
 				expect(result.created).to.be.a('date');
 				expect(result.redeemed).to.be.an('undefined');
-				expect(isUuid(result.code)).to.be.true;
+				expect(validate(result.code)).to.be.true;
 				done();
 			})
 			.catch((err)=>{
@@ -81,7 +81,7 @@ describe('OneTimeCode', function () {
 				expect(result.validTill).to.be.a('date');
 				expect(result.created).to.be.a('date');
 				expect(result.redeemed).to.be.an('undefined');
-				expect(isUuid(result.code)).to.be.true;
+				expect(validate(result.code)).to.be.true;
 				done();
 			})
 			.catch((err)=>{
@@ -109,7 +109,7 @@ describe('OneTimeCode', function () {
 				expect(result.validTill).to.be.a('date');
 				expect(result.created).to.be.a('date');
 				expect(result.redeemed).to.be.an('undefined');
-				expect(isUuid(result.code)).to.be.true;
+				expect(validate(result.code)).to.be.true;
 				expect(result.isValid()).to.be.true;
 				expect(result.isRedeemed()).to.be.false;
 				return result.invalidate();
@@ -143,7 +143,7 @@ describe('OneTimeCode', function () {
 				expect(result.validTill).to.be.a('date');
 				expect(result.created).to.be.a('date');
 				expect(result.redeemed).to.be.an('undefined');
-				expect(isUuid(result.code)).to.be.true;
+				expect(validate(result.code)).to.be.true;
 				expect(result.code).to.be.equal(code);
 				expect(result.isValid()).to.be.true;
 				expect(result.isRedeemed()).to.be.false;
@@ -187,7 +187,7 @@ describe('OneTimeCode', function () {
 				expect(result.validTill).to.be.a('date');
 				expect(result.created).to.be.a('date');
 				expect(result.redeemed).to.be.a('date');
-				expect(isUuid(result.code)).to.be.true;
+				expect(validate(result.code)).to.be.true;
 				expect(result.code).to.be.equal(code);
 				expect(result.isValid()).to.be.false;
 				expect(result.isRedeemed()).to.be.true;
@@ -215,7 +215,7 @@ describe('OneTimeCode', function () {
 	it('redeemCode, failed, code is not exists', (done) => {
 		OneTimeCode.OneTimeCode.createCode()
 			.then(()=>{
-				return OneTimeCode.OneTimeCode.redeemCode(uuid());
+				return OneTimeCode.OneTimeCode.redeemCode(v4());
 			})
 			.then(()=>{
 				done(new Error('Worked fine, this is wrong.'));

@@ -2,25 +2,25 @@ const
 	notError = require('not-error').notError,
 	Schema = require('mongoose').Schema,
 	notLocale = require('not-locale'),
-	{ v4, validate }  =  require('uuid');
+	uuid  =  require('uuid');
 
 const DEFAULT_TTL = 3; //in minutes
 const DEFAULT_TTL_MIN = 1; //in minutes
 const DEFAULT_TTL_MAX = 60; //in minutes
 
-exports.DEFAULT_TTL  = DEFAULT_TTL;
-exports.DEFAULT_TTL_MIN  = DEFAULT_TTL_MIN;
-exports.DEFAULT_TTL_MAX  = DEFAULT_TTL_MAX;
-exports.thisModelName = 'OneTimeCode';
-exports.keepNotExtended = false;
+module.exports.DEFAULT_TTL  = DEFAULT_TTL;
+module.exports.DEFAULT_TTL_MIN  = DEFAULT_TTL_MIN;
+module.exports.DEFAULT_TTL_MAX  = DEFAULT_TTL_MAX;
+module.exports.thisModelName = 'OneTimeCode';
+module.exports.keepNotExtended = false;
 
-exports.enrich = {
+module.exports.enrich = {
 	versioning: true,
 	increment: false,
 	validators: true
 };
 
-exports.thisSchema = {
+module.exports.thisSchema = {
 	code: {
 		type: String,
 		required: true
@@ -48,7 +48,7 @@ exports.thisSchema = {
 	}
 };
 
-exports.thisStatics = {
+module.exports.thisStatics = {
 	createCode(payload = {}, ttl = DEFAULT_TTL){
 		let OneTimeCode = this;
 		ttl = parseInt(ttl);
@@ -56,7 +56,7 @@ exports.thisStatics = {
 			let now = new Date();
 			now.setMinutes(now.getMinutes() + ttl);
 			let code = new OneTimeCode({
-				code:       v4(),
+				code:       uuid.v4(),
 				validTill:  now,
 				payload
 			});
@@ -89,13 +89,13 @@ exports.thisStatics = {
 		}
 	},
 	isCode(str){
-		return ((typeof str === 'string') && (validate(str)));
+		return ((typeof str === 'string') && (uuid.validate(str)));
 	}
 };
 
-exports.thisVirtuals = {};
+module.exports.thisVirtuals = {};
 
-exports.thisMethods = {
+module.exports.thisMethods = {
 	isRedeemed(){
 		return (typeof this.redeemed !== 'undefined' && this.redeemed !== null);
 	},
@@ -104,7 +104,7 @@ exports.thisMethods = {
 		if (typeof code === 'undefined' || code === null){
 			code = this.code;
 		}
-		if(typeof code === 'string' && validate(code)){
+		if(typeof code === 'string' && uuid.validate(code)){
 			return (this.active && (code === this.code) && (now.getTime() < this.validTill.getTime()));
 		}else{
 			return false;
